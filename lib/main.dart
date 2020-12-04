@@ -38,6 +38,13 @@ class _HomeState extends State<Home> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void _resetScore() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _nextIndex(int score) {
     _totalScore += score;
     setState(() {
@@ -58,7 +65,7 @@ class _HomeState extends State<Home> {
               questionIndex: _questionIndex,
               next: _nextIndex,
             )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetScore),
     );
   }
 }
