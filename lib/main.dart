@@ -20,16 +20,26 @@ class _HomeState extends State<Home> {
   final _questions = [
     {
       'questionText': 'What\'s your favourite color??',
-      'answer': ['Yellow', 'Blue', 'Black']
+      'answer': [
+        {'text': 'Yellow', 'score': 2},
+        {'text': 'Blue', 'score': 4},
+        {'text': 'Black', 'score': 8},
+      ]
     },
     {
       'questionText': 'What\'s your favourite animal??',
-      'answer': ['Elephant', 'Rabbit', 'Dog']
+      'answer': [
+        {'text': 'Elephant', 'score': 4},
+        {'text': 'Rabbit', 'score': 1},
+        {'text': 'Dog', 'score': 2}
+      ]
     },
   ];
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _nextIndex() {
+  void _nextIndex(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
@@ -48,7 +58,7 @@ class _HomeState extends State<Home> {
               questionIndex: _questionIndex,
               next: _nextIndex,
             )
-          : Result(),
+          : Result(_totalScore),
     );
   }
 }
